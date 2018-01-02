@@ -5,10 +5,6 @@ from Friendhub.configurations import models
 uri = "http://friendhub.dev.cleveroad.com/api/v1/"
 token = models.user1.token
 
-def get_user_token(email, password):
-    payload = {"email": email, "password": password}
-    r = requests.post(url=uri + 'signin/basic', data=payload)
-    return r.json()["data"]["session"]["token"]
 
 def get_user_profile_auth():
     auth_header = {"Authorization": token}
@@ -22,6 +18,7 @@ def get_user_profile_auth():
         result.append(r.json()['validation'][0]['message'])
     return result
 
+
 def user_auth(email, password):
     payload = {"email": email, "password": password}
     r = requests.post(url=uri + 'signin/basic', data=payload)
@@ -30,9 +27,10 @@ def user_auth(email, password):
     result.append(r.json())
     return result
 
-def change_pass_user(new_pass, old_pass):
+
+def change_pass_user(new_password, old_password):
     auth_header = {"Authorization": token}
-    payload = {"password": new_pass, "oldPassword": old_pass}
+    payload = {"password": new_password, "oldPassword": old_password}
     r = requests.patch(url=uri + 'users/password', headers=auth_header, data=payload)
     result = list()
     result.append(r.status_code)

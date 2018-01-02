@@ -1,5 +1,4 @@
 import requests
-
 from Friendhub.configurations import models
 from Friendhub.tools import user_tools
 
