@@ -7,14 +7,13 @@ token = models.admin.token
 password = models.admin.password
 
 
-def test_01_admin_change_pass_invalid_new_passwords(new_passwords_admin):
-    new_password, old_password = new_passwords_admin["new_password"], new_passwords_admin["old_password"]
+def test_01_admin_change_password_invalid_new_password(new_passwords_invalid):
+    new_password = new_passwords_invalid["new_password"]
     auth_header = {"Authorization": token}
-    payload = {"password": new_password, "oldPassword": old_password}
+    payload = {"password": new_password, "oldPassword": password}
     r = requests.patch(url=uri + 'profile/password', headers=auth_header, data=payload)
-    if r.status_code == new_passwords_admin["expected_code"]:
-        assert new_passwords_admin["expected_message"] == r.json()['validation'][0]['message']
-
+    if r.status_code == new_passwords_invalid["expected_code"]:
+        assert new_passwords_invalid["expected_message"] == r.json()['validation'][0]['message']
 
 def test_02_admin_change_pass_wrong_old_password():
     auth_header = {"Authorization": token}
