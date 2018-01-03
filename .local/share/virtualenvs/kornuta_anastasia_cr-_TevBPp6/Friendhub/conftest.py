@@ -70,3 +70,34 @@ def invalid_name(request):
     }])
 def new_passwords_invalid(request):
     return request.param
+
+
+@pytest.fixture(scope="session", params=[
+    {
+        "firstName": "A",
+        "gender": 1,
+        "birthday": "2004-03-28T07:15:58.755Z",
+        "country": "USA",
+        "about": "A"
+    },
+    {
+        "firstName": "iHN0U8OiigET8GbKYCIg",
+        "gender": 2,
+        "birthday": "1990-12-12T07:15:58.755Z",
+        "country": "USA",
+        "about": "s2AiUD4zK1rPQGCQVf52q119xvJN7L2OO7gvPTi5LtEwnpTy2HFJeysjhDWsbHaNTZtrmC f13tO sJ5LAhw1pNv6nIg" +
+                 "E0URLCCSsuRiZQ32Y0BncPA8pbrCOWTb9Rwnq3Z A7oM79aiJOChUEJOmdy7W0U0QCzrtmucX Slh1F MRlteUHoIN5nNVcLqr" +
+                 "ChLLps1AO 6OKjI0VsPk4VBWfFY9MvumRkOIS ZUVjR3HlHSywFqs8lmDT184asO2QWNQgfpRUaQaA79JKyWFMCxtQr6h5OYEoM" +
+                 "gw8KMkVTIcBNjFRSHYgp6pHcE z4TdlLcjRbkhLcyFzO55Td6n1tdnQpulzzooSM9fTpXRv uHunbCDWKMEbVfMGtYAueVY5ZC" +
+                 "K1IdEeXvElkEY"
+    },
+    {
+        "firstName": "Test",
+        "gender": 2,
+        "birthday": "1920-12-12T07:15:58.755Z",
+        "country": "Canada",
+        "about": ""
+    }
+])
+def valid_user_data(request):
+    return request.param
