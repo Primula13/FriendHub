@@ -9,14 +9,7 @@ token = models.user1.token
 def get_user_profile_auth():
     auth_header = {"Authorization": token}
     r = requests.get(url=uri + 'users/9/detail', headers=auth_header)
-    result = list()
-    if r.status_code == 200:
-        result.append(r.status_code)
-        result.append(r.json())
-    elif r.status_code != 200:
-        result.append(r.status_code)
-        result.append(r.json()['validation'][0]['message'])
-    return result
+    return r.status_code, r.json()
 
 
 def user_auth(email, password):
